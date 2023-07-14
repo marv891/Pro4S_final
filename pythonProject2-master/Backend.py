@@ -558,9 +558,9 @@ class GUI_functions(QWidget):
             self.updateLogFile(self.text, self.functionPlace)
         # Set Parameters of camera
         try:
-            
+            self.Timer.stop()
             CameraControl.readSettingsOutOfFile(opendialogpath)
-            
+            self.Timer.start()
         except:
             frameinfo = getframeinfo(currentframe())
             self.functionPlace = str(frameinfo.lineno)
@@ -625,8 +625,9 @@ class GUI_functions(QWidget):
             
             # Version date as filename:
             nameParameter = self.getActualTimeFilename()
+            self.Timer.stop()
             CameraControl.saveSettingsInFile(nameParameter)
-            
+            self.Timer.start()
         except:
             frameinfo = getframeinfo(currentframe())
             self.functionPlace = str(frameinfo.lineno)
